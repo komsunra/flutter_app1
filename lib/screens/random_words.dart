@@ -17,7 +17,6 @@ class _RandomWordState extends State<RandomWord> {
       leading: Icon(Icons.person),
       trailing: Icon(Icons.keyboard_arrow_right),
       isThreeLine: true,
-
     );
   }
 
