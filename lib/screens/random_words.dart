@@ -13,7 +13,7 @@ class _RandomWordState extends State<RandomWord> {
   Widget buildListTile(WordPair wordPair){
     return ListTile(
       title: Text(wordPair.asUpperCase),
-      subtitle: Text('Sub title'),
+      subtitle: Text('Subtitle'),
       leading: Icon(Icons.person),
       trailing: Icon(Icons.keyboard_arrow_right),
       isThreeLine: true,
