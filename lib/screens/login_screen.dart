@@ -16,32 +16,12 @@ class _LoginScreenState extends State<LoginScreen> {
 
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
 
-  Future<Null> _doLogin() async{
-    final response = await http.post('http://10.9.0.19:3000/login',
-        body: {'username': ctrlUserName.text , 'password': ctrlPassword.text});
-
-    if (response.statusCode == 200){
-      var jsonResponse = json.decode(response.body);
-      print(jsonResponse);
-      if (jsonResponse['ok']){
-        Navigator.pushReplacement(context,
-            MaterialPageRoute(builder: (context) => HomeScreen())
-        );
-      }else{
-        //error
-      }
-    }else{
-      print('Failed to get rest api !!!');
-      throw Exception('Failed to get rest api !!!');
-    }
-  }
-
   void doLogin(){
     print(ctrlUserName.text);
     
     if (ctrlUserName.text == 'admin' && ctrlPassword.text == 'admin'){
       Navigator.pushReplacement(context,
-        MaterialPageRoute(builder: (context) => HomeScreen())
+          MaterialPageRoute(builder: (context) => HomeScreen())
       );
     }else{
       print('Error !! login');
@@ -91,63 +71,78 @@ class _LoginScreenState extends State<LoginScreen> {
           Container(
             color: Colors.blue,
           ),
-          ListView(
-            children: <Widget>[
-              Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
+          Scaffold(
+            body: Stack(
+                  fit: StackFit.expand,
                   children: <Widget>[
-                    SizedBox(height: 30.0,width: 300.0,),
-                    Image(image: AssetImage('assets/images/login.png'),width: 150.0,height: 150.0,),
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(50.0, 0.0, 50.0, 10.0),
-                      child:
-                      Form(child: Column(
+                    Container(
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          fit: BoxFit.cover,
+                          image: AssetImage('assets/images/dog1.jpg')
+                        )
+                      ),
+                    ),
+                    ListView(children: <Widget>[
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
-                          TextFormField(
-                            controller: ctrlUserName,
-                            keyboardType: TextInputType.emailAddress,
-                            decoration: InputDecoration(
-                              labelText: 'Email',
-                              prefixIcon: Icon(Icons.email),
-                              filled: true,
-                              fillColor: Colors.white54,
-                            ),
-                          ),
-                          SizedBox(height: 10.0),
-                          TextFormField(
-                            controller: ctrlPassword,
-                            obscureText: true,
-                            decoration: InputDecoration(
-                              labelText: 'Password',
-                              prefixIcon: Icon(Icons.vpn_key),
-                              filled: true,
-                              fillColor: Colors.white54,
-                            ),
-                          ),
-                          SizedBox(height: 10.0,),
-                          RawMaterialButton(
-                            fillColor: Colors.lightBlueAccent,
-                            onPressed: () => doLogin() ,
-                            shape: const StadiumBorder(),
-                            child: Padding(
-                              padding: EdgeInsets.symmetric(vertical: 5.0,horizontal: 50.0),
-                              child: (
-                                  Text('Login',style: TextStyle(color: Colors.white,fontSize: 20.0))
-                              ),
-                            ),
-                          ),
-                          FlatButton(
-                            onPressed: () {},
-                            child: Text('Register new user?',style: TextStyle(color: Colors.white,fontSize: 18.0),),
+                          SizedBox(height: 30.0,width: 300.0,),
+                          Image(image: AssetImage('assets/images/login_logo.png'),width: 150.0,height: 150.0,),
+                          Text("Luv Me Luv My Dog.",style: TextStyle(color:Colors.white,fontSize: 26.0,fontWeight: FontWeight.bold),),
+                          Padding(
+                            padding: const EdgeInsets.fromLTRB(50.0, 0.0, 50.0, 10.0),
+                            child:
+                            Form(child: Column(
+                              children: <Widget>[
+                                TextFormField(
+                                  controller: ctrlUserName,
+                                  keyboardType: TextInputType.emailAddress,
+                                  decoration: InputDecoration(
+                                    labelText: 'Email',
+                                    prefixIcon: Icon(Icons.email),
+                                    filled: true,
+                                    fillColor: Colors.white54,
+                                  ),
+                                ),
+                                SizedBox(height: 10.0),
+                                TextFormField(
+                                  controller: ctrlPassword,
+                                  obscureText: true,
+                                  decoration: InputDecoration(
+                                    labelText: 'Password',
+                                    prefixIcon: Icon(Icons.vpn_key),
+                                    filled: true,
+                                    fillColor: Colors.white54,
+                                  ),
+                                ),
+                                SizedBox(height: 10.0,),
+                                RawMaterialButton(
+                                  fillColor: Colors.lightBlueAccent,
+                                  onPressed: () => doLogin() ,
+                                  shape: const StadiumBorder(),
+                                  child: Padding(
+                                    padding: EdgeInsets.symmetric(vertical: 5.0,horizontal: 50.0),
+                                    child: (
+                                        Text('Login',style: TextStyle(color: Colors.white,fontSize: 20.0))
+                                    ),
+                                  ),
+                                ),
+                                FlatButton(
+                                  onPressed: () {},
+                                  child: Text('Register now?',style: TextStyle(color: Colors.white,fontSize: 18.0),),
+                                )
+                              ],
+                            ),),
                           )
                         ],
-                      ),),
-                    )
+                      ),
+                    ],
+                    ),
                   ],
-                ),
-              ),
-            ],
+
+                )
+
           )
         ],
       ),

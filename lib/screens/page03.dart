@@ -18,6 +18,7 @@ class _Page03State extends State<Page03> {
           title: Text('Font Style', style: TextStyle(color: Colors.black)),
           subtitle: Text('กำหนดรูปแบบตัวอักษร'),
           trailing: Icon(Icons.arrow_forward_ios),
+          onTap: (){},
         ),
         Divider(),
         ListTile(

@@ -46,8 +46,10 @@ class DatabaseHelper {
 }
 
 class MembersService{
+  DatabaseHelper databaseHelper = new DatabaseHelper.internal();
+
   Future save(Map member) async {
-    DatabaseHelper databaseHelper = new DatabaseHelper.internal();
+
     var dbClient = await databaseHelper.getDb();
 
     String sql='''
@@ -67,14 +69,12 @@ class MembersService{
   }
 
   Future findAll() async{
-    DatabaseHelper databaseHelper = new DatabaseHelper.internal();
     var dbClient = await databaseHelper.getDb();
     var sql='SELECT * FROM members ORDER BY id';
     return await dbClient.rawQuery(sql);
   }
 
   Future remove(int id) async{
-    DatabaseHelper databaseHelper = new DatabaseHelper.internal();
     var dbClient = await databaseHelper.getDb();
     var sql='DELETE FROM members WHERE id=?';
     return await dbClient.rawQuery(sql,[id]);

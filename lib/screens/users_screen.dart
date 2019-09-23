@@ -30,8 +30,6 @@ class _UsersScreenState extends State<UsersScreen> {
 
   @override
   void initState() {
-    // TODO: implement initState
-    super.initState();
     getUsers();
   }
 
@@ -54,7 +52,7 @@ class _UsersScreenState extends State<UsersScreen> {
               Divider(),
             ],
           );
-      },itemCount: users != Null ? users.length : 0,),
+        },itemCount: users != Null ? users.length : 0,),
         )
     );
   }

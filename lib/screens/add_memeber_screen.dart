@@ -29,7 +29,7 @@ class _AddMemberScreenState extends State<AddMemberScreen> {
     birthDate = formatted;
   }
 
-  Future<Null> saveData() async{
+  Future<void> saveData() async{
     print(ctrlName.text);
     print(ctrlEmail.text);
     print(ctrlPhone.text);
@@ -67,7 +67,7 @@ class _AddMemberScreenState extends State<AddMemberScreen> {
     }).toList(),);
   }
 
-  Future<Null> selectDate() async{
+  Future<void> selectDate() async{
     var showDate = birthDate.split("/");
     print(showDate.getRange(2, 2));
     final DateTime picked = await showDatePicker(
@@ -79,7 +79,7 @@ class _AddMemberScreenState extends State<AddMemberScreen> {
     );
 
     if (picked != null && picked != now){
-      setState(() {
+        setState(() {
         String formatted = formatter.format(picked);
         birthDate = formatted;
       });
@@ -126,6 +126,7 @@ class _AddMemberScreenState extends State<AddMemberScreen> {
           leading: const Icon(Icons.phone),
           title: new TextFormField(
             controller: ctrlPhone,
+            keyboardType: TextInputType.number,
             validator: ValidateForm().validateMobile,
             decoration: new InputDecoration(
               hintText: "Phone",
@@ -136,6 +137,7 @@ class _AddMemberScreenState extends State<AddMemberScreen> {
           leading: const Icon(Icons.email),
           title: new TextFormField(
             controller: ctrlEmail,
+            keyboardType: TextInputType.emailAddress,
             validator: ValidateForm().validateEmail,
             decoration: new InputDecoration(
               hintText: "Email",
